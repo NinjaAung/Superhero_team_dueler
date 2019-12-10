@@ -27,7 +27,7 @@ class Armor:
         ''' Return a random value between 0 and the initialized max_block strength. '''
         return random.randint(0, self.max_block)
 
-class Hero(Ability):
+class Hero(Ability, Armor):
     def __init__(self, name, starting_health=100):
         '''Instance properties:
           abilities: List
@@ -39,7 +39,7 @@ class Hero(Ability):
         self.name = name
         self.max_health = starting_health
         self.current_health = self.max_health
-        self.armor = list()
+        self.armors = list()
         self.abilities = list()
 
     def add_ability(self, ability):
@@ -50,15 +50,33 @@ class Hero(Ability):
         '''Calculate the total damage from all ability attacks.
           return: total:Int
         '''
+        damage = 0
         # TODO: This method should run Ability.attack() on every ability
         # in self.abilities and returns the total as an integer.
-        for ability in self.abilities:
-            damage = ability.attack() 
-            new_damage = damage
+        for ability in self.abilities: 
+            new_damage = damage + ability.attack()
+            damage = new_damage
 
-        return new_damage
+        return damage
 
+    def add_armor(self, armor):
+        '''Add armor to self.armors
+            Armor: Armor Object
+        '''
+        self.armors.append(armor)
 
+    def defend(self):
+        '''Runs `block` method on each armor.
+            Returns sum of all blocks
+        '''
+        blocked = 0
+        for armor in self.armors:
+            new_block = armor.block() + blocked
+            blocked = new_block 
+
+    def take_damage(self, damage):
+
+        pass
         
 
 
