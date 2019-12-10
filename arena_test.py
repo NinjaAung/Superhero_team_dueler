@@ -67,4 +67,4 @@ def test_create_hero():
     arena = superhero.Arena()
     hero = arena.create_hero()
 
-    assert ['Ben', 100, True, 0, 0] == [hero.name, hero.current_health, hero.is_alive(), hero.kills, hero.deaths]
+    assert ['Ben', 1, True, 0, 0] == [hero.name, hero.current_health, hero.is_alive(), hero.kills, hero.deaths]
