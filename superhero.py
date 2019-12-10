@@ -51,8 +51,7 @@ class Hero(Ability, Armor):
           return: total:Int
         '''
         damage = 0
-        # TODO: This method should run Ability.attack() on every ability
-        # in self.abilities and returns the total as an integer.
+
         for ability in self.abilities: 
             new_damage = damage + ability.attack()
             damage = new_damage
@@ -73,20 +72,35 @@ class Hero(Ability, Armor):
         for armor in self.armors:
             new_block = armor.block() + blocked
             blocked = new_block 
+        return blocked 
 
     def take_damage(self, damage):
+        '''Updates self.current_health to reflect the damage minus the defense. '''
+        blocked = self.defend()
 
+        if damage - blocked > 0:
+            damage_taken = damage - blocked
+        else:
+            damage_taken = 0
+
+        self.current_health = self.current_health - damage_taken
+         
+        return self.current_health
+
+    def is_alive(self):  
+        '''Return True or False depending on whether the hero is alive or not.
+        '''
+        if self.current_health <= 0:
+            return False
+        else:
+            return True
         pass
+
+
+
         
 
 
 
 if __name__ == "__main__":
-    # If you run this file from the terminal
-    # this block is executed.
-    ability = Ability("Great Debugging", 50)
-    another_ability = Ability("Smarty Pants", 90)
-    hero = Hero("Grace Hopper", 200)
-    hero.add_ability(ability)
-    hero.add_ability(another_ability)
-    print(hero.attack())
+    pass
