@@ -1,9 +1,6 @@
 from random import randint, choice
 from colorama import Fore
 
-# Helper Functions
-
-
 def int_input(txt, default=0):
     try:
         val = int(input(txt))
@@ -46,7 +43,6 @@ class Arena:
         add_abilities = input(
             "Add some abilities? (y/n)  ")
         if 'y' in add_abilities.lower():
-            #TODO: Refactor
             while True:
                 ability = self.create_ability()
                 hero.add_ability(ability)
